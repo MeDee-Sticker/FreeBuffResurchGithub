@@ -31,6 +31,7 @@ watch them without rendering anything.
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |
 | `promo_t3code_script.md` | Script for the 45 s flagship clip. |
 | `social_posts_2026-11-06.md` | X / LinkedIn / TikTok post set for the snapshot. |
+| `short_video_posts_2026-11-06.md` | TikTok and Reels copy for all five clips, with a 7-day posting order. |
 | `build_workbook.py` | Builds the delivery spreadsheet rows. |
 
 ## Render requirements
