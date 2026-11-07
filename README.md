@@ -6,6 +6,9 @@ promo clips (9:16, 1080x1920, 30 fps), burned-in Thai captions, and a fully synt
 Everything here was built for the 2026-11-06 snapshot. The scripts are generic enough to re-run on a
 new snapshot, but the numbers baked into the clips are from that one.
 
+Agent-facing instructions — render steps, expected measurements per clip, sync and spectrum targets,
+and the pitfalls — live in [SKILL.md](SKILL.md).
+
 ## What is in here
 
 | Path | What it does |
