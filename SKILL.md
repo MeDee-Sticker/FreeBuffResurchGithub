@@ -172,6 +172,11 @@ These are product rules, not style preferences:
 
 ## 7. Publishing
 
+CI (`.github/workflows/verify-clips.yml`) renders all five clips on every push and runs
+`scripts/check_clips.py`, which fails on wrong frame count, duration, loudness, true peak or sync. It
+substitutes TLWG fonts for the proprietary ones, so pass CI is a spec check, not a proof the
+captions look right — still inspect frames for that.
+
 `*.mp4`, `build/`, `fonts/` and the ffmpeg builds are gitignored. Before any commit run
 `git ls-files | grep -E '\.(mp4|exe|zip|ttf|wav)$'` — it must print nothing. Renders stay out of the
 repo; attach them as release assets if they need to be shared.

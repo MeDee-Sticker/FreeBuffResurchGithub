@@ -1,0 +1,63 @@
+name: verify-clips
+
+# Renders every clip from source on each push and fails when one drifts outside the spec in
+# SKILL.md. The clips themselves are gitignored, so CI has to render them to check anything.
+
+on:
+  push:
+    branches: [content-pipeline]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  render-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: System dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-thai-tlwg fonts-dejavu-core
+          ffmpeg -hide_banner -filters | grep -q ' subtitles ' \
+            || { echo "ffmpeg here has no libass"; exit 1; }
+
+      - name: Python dependencies
+        run: python -m pip install --quiet --upgrade pip pillow numpy
+
+      - name: "Fonts (stand-ins: the real ones are proprietary)"
+        run: python scripts/prepare_fonts.py
+
+      - name: Render silence masters
+        env:
+          FFMPEG_BIN: /usr/bin/ffmpeg
+        run: |
+          python render_t3code_promo.py --render
+          python render_claude_mem_22s.py --render
+          python render_impeccable_22s.py --render
+          python render_scrapling_22s.py --render
+          python render_hallmark_22s.py --render
+
+      - name: Score and mux
+        env:
+          FFMPEG_BIN: /usr/bin/ffmpeg
+        run: python build_audio.py --mux
+
+      - name: Check duration, frames, loudness, sync
+        env:
+          FFMPEG_BIN: /usr/bin/ffmpeg
+        run: python scripts/check_clips.py
+
+      - name: Keep the renders for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clips
+          path: "*_scored.mp4"
+          if-no-files-found: warn
+          retention-days: 7

@@ -22,7 +22,8 @@ FONTS = {
     "mono": "C:/Windows/Fonts/consolab.ttf",
     "monoreg": "C:/Windows/Fonts/consola.ttf",
 }
-FF = os.path.abspath("tools/_ff/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe")
+# FFMPEG_BIN wins everywhere else; keep the bundled Windows build as the default
+FF = os.environ.get("FFMPEG_BIN") or os.path.abspath("tools/_ff/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe")
 
 BG_TOP, BG_BOT = (6, 9, 14), (13, 19, 30)
 PANEL, PANEL2 = (16, 22, 34), (22, 30, 45)
@@ -34,6 +35,15 @@ GREEN = (52, 211, 153)
 RED = (248, 113, 113)
 AMBER = (251, 191, 36)
 ACCENTS = [CYAN, VIOLET, GREEN, AMBER, (244, 114, 182)]
+
+# the Windows font paths only exist on Windows; fall back to the bundled fonts/ directory
+if not os.path.exists(FONTS["bold"]) and os.path.isdir("fonts"):
+    FONTS.update({
+        "bold": "fonts/tahomabd.ttf",
+        "reg": "fonts/tahoma.ttf",
+        "mono": "fonts/consolab.ttf",
+        "monoreg": "fonts/consola.ttf",
+    })
 
 _fc = {}
 
