@@ -5,9 +5,11 @@ description: Re-render the vertical promo clips from the GitHub Trending pipelin
 
 # Re-render the trending promo clips
 
-Four clips live here: `t3code_promo_45s` (flagship), `claude_mem_promo_22s` (#2),
-`impeccable_promo_22s` (#3), `scrapling_promo_22s` (#4). Each has a silent master and a
-`*_scored.mp4` with the music and effects muxed in.
+Five clips live here: `t3code_promo_45s` (flagship), `claude_mem_promo_22s` (#2),
+`impeccable_promo_22s` (#3), `scrapling_promo_22s` (#4), `hallmark_promo_22s` (#5). Each has a
+silent master named exactly `<clip>.mp4` and a `<clip>_scored.mp4` with the music and effects muxed
+in. Those names are load-bearing: `scripts/check_clips.py`, the `mux(...)` calls and the CI artifact
+step all look them up by string, so a rename silently drops a clip from verification.
 
 All four are rendered by scripts that import one shared module, `render_t3code_promo.py`. That module
 holds the look: dark grid background, mono type, rounded terminal cards, glow, the ASS caption styles
@@ -17,7 +19,8 @@ or the series drifts apart.
 ## 1. Setup
 
 ```bash
-export FFMPEG_BIN=/path/to/ffmpeg     # build_audio.py falls back to the bundled Windows exe
+export FFMPEG_BIN=/path/to/ffmpeg     # honoured by every renderer and by build_audio.py
+# without it they fall back to the bundled Windows exe under tools/_ff/ and fail on Linux
 python -c "import PIL, numpy; print(PIL.__version__, numpy.__version__)"
 ```
 
@@ -30,6 +33,12 @@ Requirements:
 - Thai fonts in `fonts/`: `tahoma.ttf`, `tahomabd.ttf`, `consola.ttf`, `consolab.ttf`. They are not
   in the repo (proprietary). Without them libass renders tofu boxes and the scene text raises
   `OSError: cannot open resource`.
+- On a machine without the proprietary fonts, run `python scripts/prepare_fonts.py`. It copies the
+  TLWG fonts (`fonts-thai-tlwg`) under the same four filenames, falling back to DejaVu, and leaves an
+  existing `fonts/` alone. Metrics differ from Tahoma, so Linux and CI renders look slightly
+  different from the Windows masters while still measuring inside the spec below.
+- `ffprobe` sits next to `ffmpeg`, not on `PATH`. The acceptance commands take `BIN=$(dirname
+  "$FFMPEG_BIN")`; `scripts/check_clips.py` derives it the same way, or honours `FFPROBE_BIN`.
 - On Linux with no system fontconfig config, the renderer writes `build/fonts.conf` and exports
   `FONTCONFIG_FILE` itself. If you see `Failed to load fontconfig fonts!` in the ffmpeg log, that
   generation step did not run.
@@ -53,21 +62,32 @@ Use PNG. JPEG fails here with `Non full-range YUV is non-standard ... Could not 
 ## 3. Score and mux
 
 ```bash
-python build_audio.py --build   # writes build/score_{cm,t3,imp,scr}.wav
+python build_audio.py --build   # writes build/score_{cm,t3,imp,scr,hall}.wav
 python build_audio.py --mux     # builds every score, then muxes all clips
 ```
 
-`--mux` re-muxes all four clips and is deterministic, so it is safe to run when only one clip changed.
+`--mux` re-muxes all five clips and is deterministic, so it is safe to run when only one clip changed.
 Music is synthesised with numpy (seeded), so there are no samples or licences to clear.
 
-Cue sheets are the source of truth for hits: `CM_CUTS`, `T3_CUTS`, `IMP_CUTS`, `SCR_CUTS`. The three
-22 s clips share the same grid — whoosh at 3.0, impact at 9.0, riser 13.9→impact 15.0, whoosh +
+Cue sheets are the source of truth for hits: `CM_CUTS`, `T3_CUTS`, `IMP_CUTS`, `SCR_CUTS`,
+`HALL_CUTS`. The four 22 s clips share the same grid — whoosh at 3.0, impact at 9.0, riser 13.9→impact 15.0, whoosh +
 typing at 19.0, bell at 21.05, fade 20.9–22.0. `SERIES_22` selects the series music level and duck
 depth; a new 22 s clip must be added there or it will be louder and less ducked than its siblings.
 
 ## 4. Accept the render
 
-Expected values, measured from the shipped files:
+The gate is one command; it checks every clip for codec, 1080x1920, 30 fps, the frame count below,
+duration, 48 kHz stereo audio, integrated loudness, true peak and sync, and exits non-zero on any
+violation (it exits 2, not 1, when a render is simply missing — render and mux first):
+
+```bash
+python scripts/check_clips.py
+```
+
+Expected values, measured from the shipped files. The bytes and the exact peak are what those
+particular encodes produced; the band is the spec, so a fresh render on Linux/CI landing slightly
+elsewhere (CI measures `t3code` at -3.2 dBFS and 30 ms of sync drift, local Windows files at -3.5 dBFS
+and 20–60 ms) is still a pass:
 
 | clip | frames | silent | scored | I (LUFS) | LRA | true peak |
 |---|---|---|---|---|---|---|
@@ -151,10 +171,11 @@ cut. Cross-check the picture cut before moving audio.
 2. Keep the 5-scene spine at 0/3/9/15/19 s so the shared cue grid still lines up.
 3. Add a `*_CUTS` list and a `build(...)` call in `build_audio.py`, add the name to `SERIES_22`, add
    the `mux(...)` line.
-4. Re-run the acceptance checks above and compare against its siblings, not just against zero.
-5. Add the clip to three places that do not update themselves: the acceptance table in this file,
-the renderer table and the reproduce block in `README.md`, and the `mux(...)` list in
-`build_audio.py`. A clip that renders but is missing from the table looks verified when it is not.
+4. Re-run the acceptance checks above and compare against its siblings, not just against zero.5. Add the clip to the five places that do not update themselves: the acceptance table in this file,
+   the renderer table and the reproduce block in `README.md`, the `mux(...)` list in `build_audio.py`,
+   the `SPEC` dict in `scripts/check_clips.py` (frame count, duration and cue times), and the render
+   step of `.github/workflows/verify-clips.yml`. A clip that renders but is missing from these looks
+   verified when it is not — CI would never render or measure it.
 
 ## 6. Fact guardrails
 
@@ -176,6 +197,12 @@ CI (`.github/workflows/verify-clips.yml`) renders all five clips on every push a
 `scripts/check_clips.py`, which fails on wrong frame count, duration, loudness, true peak or sync. It
 substitutes TLWG fonts for the proprietary ones, so pass CI is a spec check, not a proof the
 captions look right — still inspect frames for that.
+
+Before shipping a set, walk this list: `python scripts/check_clips.py` green on the exact files you
+are uploading; captions inspected from frames pulled out of the encoded `*_scored.mp4` (stills never
+show captions); on-screen numbers still from the same snapshot (re-run `fetch_trending.py` past 3–4
+days); guardrails in §6 re-read against the copy. CI artifacts keep the renders for 7 days only —
+download them if you need them later, they are not a publishing record.
 
 `*.mp4`, `build/`, `fonts/` and the ffmpeg builds are gitignored. Before any commit run
 `git ls-files | grep -E '\.(mp4|exe|zip|ttf|wav)$'` — it must print nothing. Renders stay out of the
