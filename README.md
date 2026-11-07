@@ -15,6 +15,7 @@ new snapshot, but the numbers baked into the clips are from that one.
 | `render_t3code_promo.py` | Shared visual system: dark grid background, mono type, terminal cards, glow, ASS captions, ffmpeg command. Also renders the 45 s T3 Code clip. |
 | `render_claude_mem_22s.py` | 22 s clip for #2 (claude-mem), imports the shared system above. |
 | `render_impeccable_22s.py` | 22 s clip for #3 (impeccable), imports the shared system above. |
+| `render_scrapling_22s.py` | 22 s clip for #4 (Scrapling), imports the shared system above. |
 | `build_audio.py` | Procedural music bed + SFX for every clip, then muxes and loudness-normalises. No samples, no licences to clear. |
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |
 | `promo_t3code_script.md` | Script for the 45 s flagship clip. |
@@ -42,6 +43,7 @@ python fetch_trending.py                 # snapshot -> data
 python ai_content_radar.py               # ranking used by the scripts
 python render_claude_mem_22s.py --render # 22 s clip, #2
 python render_impeccable_22s.py --render # 22 s clip, #3
+python render_scrapling_22s.py --render  # 22 s clip, #4
 python render_t3code_promo.py --render   # 45 s clip
 python build_audio.py --mux              # score + mux every clip
 ```

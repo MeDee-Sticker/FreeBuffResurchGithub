@@ -247,14 +247,18 @@ T3_CUTS = [(3.55, "whoosh"), (9.6, "whoosh"), (13.6, "impact"), (19.6, "whoosh")
 # impeccable (#3): same 22s shape as claude-mem so the cues read as one series
 IMP_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
             (19.0, "whoosh"), (19.5, "typing"), (21.05, "bell")]
+# scrapling (#4): same cue grid so the 22s clips stay interchangeable
+SCR_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
+            (19.0, "whoosh"), (19.5, "typing"), (21.05, "bell")]
+SERIES_22 = ("cm", "imp", "scr")
 
 
 def build(name, dur, bpm, cuts, kick_beats, hat_div, ticks=None, end_fade=None):
     music = bed(dur, bpm, kick_beats, hat_div)
     hit_times = [c[0] for c in cuts if c[1] in ("whoosh", "impact")]
-    mix = duck(music, hit_times, depth=0.6 if name in ("cm", "imp") else 0.5)
+    mix = duck(music, hit_times, depth=0.6 if name in SERIES_22 else 0.5)
     n = mix.shape[0]
-    music_lvl = 0.55 if name in ("cm", "imp") else 0.62
+    music_lvl = 0.55 if name in SERIES_22 else 0.62
     mix *= music_lvl
 
     for t0, kind in cuts:
@@ -320,7 +324,10 @@ if __name__ == "__main__":
                end_fade=(43.4, 45.0))
     imp = build("imp", 22.0, 100, IMP_CUTS, (0, 2), 8, ticks=(15.15, 16.45, 0.08),
                 end_fade=(20.9, 22.0))
+    scr = build("scr", 22.0, 100, SCR_CUTS, (0, 2), 8, ticks=(15.15, 16.45, 0.08),
+                end_fade=(20.9, 22.0))
     if "--mux" in args:
         mux("claude_mem_promo_22s.mp4", cm, "claude_mem_promo_22s_scored.mp4")
         mux("t3code_promo_45s.mp4", t3, "t3code_promo_45s_scored.mp4")
         mux("impeccable_promo_22s.mp4", imp, "impeccable_promo_22s_scored.mp4")
+        mux("scrapling_promo_22s.mp4", scr, "scrapling_promo_22s_scored.mp4")
