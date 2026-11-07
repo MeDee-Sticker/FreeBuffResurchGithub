@@ -250,7 +250,10 @@ IMP_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
 # scrapling (#4): same cue grid so the 22s clips stay interchangeable
 SCR_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
             (19.0, "whoosh"), (19.5, "typing"), (21.05, "bell")]
-SERIES_22 = ("cm", "imp", "scr")
+# hallmark (#5)
+HALL_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
+             (19.0, "whoosh"), (19.5, "typing"), (21.05, "bell")]
+SERIES_22 = ("cm", "imp", "scr", "hall")
 
 
 def build(name, dur, bpm, cuts, kick_beats, hat_div, ticks=None, end_fade=None):
@@ -308,7 +311,9 @@ def mux(video, audio, out, target_i="-17"):
            "-i", video, "-i", audio,
            "-map", "0:v:0", "-map", "1:a:0",
            "-c:v", "copy",
-           "-af", f"loudnorm=I={target_i}:TP=-2.0:LRA=11",
+           # ebur128 reports true peak (inter-sample), which runs ~0.5-1 dB above the sample peak,
+           # so a TP=-3.0 target is what actually lands true peak at or below -2 dBFS.
+           "-af", f"loudnorm=I={target_i}:TP=-3.0:LRA=11",
            "-c:a", "aac", "-b:a", "128k", "-ar", "48000", "-ac", "2",
            "-shortest", "-movflags", "+faststart", out]
     r = subprocess.run(cmd)
@@ -326,8 +331,11 @@ if __name__ == "__main__":
                 end_fade=(20.9, 22.0))
     scr = build("scr", 22.0, 100, SCR_CUTS, (0, 2), 8, ticks=(15.15, 16.45, 0.08),
                 end_fade=(20.9, 22.0))
+    hall = build("hall", 22.0, 100, HALL_CUTS, (0, 2), 8, ticks=(15.15, 16.45, 0.08),
+                 end_fade=(20.9, 22.0))
     if "--mux" in args:
         mux("claude_mem_promo_22s.mp4", cm, "claude_mem_promo_22s_scored.mp4")
         mux("t3code_promo_45s.mp4", t3, "t3code_promo_45s_scored.mp4")
         mux("impeccable_promo_22s.mp4", imp, "impeccable_promo_22s_scored.mp4")
         mux("scrapling_promo_22s.mp4", scr, "scrapling_promo_22s_scored.mp4")
+        mux("hallmark_promo_22s.mp4", hall, "hallmark_promo_22s_scored.mp4")

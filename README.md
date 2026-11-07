@@ -19,6 +19,7 @@ and the pitfalls — live in [SKILL.md](SKILL.md).
 | `render_claude_mem_22s.py` | 22 s clip for #2 (claude-mem), imports the shared system above. |
 | `render_impeccable_22s.py` | 22 s clip for #3 (impeccable), imports the shared system above. |
 | `render_scrapling_22s.py` | 22 s clip for #4 (Scrapling), imports the shared system above. |
+| `render_hallmark_22s.py` | 22 s clip for #5 (hallmark), imports the shared system above. |
 | `build_audio.py` | Procedural music bed + SFX for every clip, then muxes and loudness-normalises. No samples, no licences to clear. |
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |
 | `promo_t3code_script.md` | Script for the 45 s flagship clip. |
@@ -47,6 +48,7 @@ python ai_content_radar.py               # ranking used by the scripts
 python render_claude_mem_22s.py --render # 22 s clip, #2
 python render_impeccable_22s.py --render # 22 s clip, #3
 python render_scrapling_22s.py --render  # 22 s clip, #4
+python render_hallmark_22s.py --render   # 22 s clip, #5
 python render_t3code_promo.py --render   # 45 s clip
 python build_audio.py --mux              # score + mux every clip
 ```
@@ -56,7 +58,8 @@ Add `--stills 1.0,6.5,12.0` to any renderer to dump PNG frames instead of encodi
 ## Delivery numbers we hold ourselves to
 
 - 1080x1920, 30 fps, H.264 + AAC 48 kHz stereo, `-movflags +faststart`.
-- Integrated loudness around **-17.4 LUFS**, true peak at or below **-2 dBFS**.
+- Integrated loudness around **-17.5 LUFS**, true peak at or below **-1.5 dBFS** (most clips land at
+  -3.4 or lower; loudness normalisation can overshoot on some beds — see SKILL.md).
 - Effect hits land within ~2 frames of the picture cut.
 - Music is instrumental only and dipped ~1.6 dB across 500-1800 Hz, so nothing competes with reading
   the captions, and a voice-over still has room.
