@@ -9,6 +9,13 @@ new snapshot, but the numbers baked into the clips are from that one.
 Agent-facing instructions — render steps, expected measurements per clip, sync and spectrum targets,
 and the pitfalls — live in [SKILL.md](SKILL.md).
 
+## Watch the result
+
+The clips themselves are not in Git (see `.gitignore`). They ride as release assets:
+[**snapshot-2026-11-06**](https://github.com/MeDee-Sticker/trending-content-pipeline/releases/tag/snapshot-2026-11-06)
+has all five scored encodes — 1080x1920, Thai captions burned in, about 7.3 MB in total — so you can
+watch them without rendering anything.
+
 ## What is in here
 
 | Path | What it does |

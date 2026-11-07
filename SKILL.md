@@ -206,4 +206,12 @@ download them if you need them later, they are not a publishing record.
 
 `*.mp4`, `build/`, `fonts/` and the ffmpeg builds are gitignored. Before any commit run
 `git ls-files | grep -E '\.(mp4|exe|zip|ttf|wav)$'` — it must print nothing. Renders stay out of the
-repo; attach them as release assets if they need to be shared.
+repo; they ship as release assets, which also gives viewers something to watch without rendering:
+
+```bash
+gh release create <tag> --notes-file build/release-notes.md *_scored.mp4   # notes live in build/ (ignored)
+gh release view <tag> --json assets --jq '.assets[] | "\(.size)\t\(.name)"'   # sizes must match the local files
+```
+
+The 2026-11-06 set is tagged `snapshot-2026-11-06` and linked from `README.md`, so a new snapshot needs
+a new tag and that README link updated, not a silent asset replacement.
