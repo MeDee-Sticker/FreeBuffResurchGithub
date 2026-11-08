@@ -184,8 +184,10 @@ def scene_hook(t, img):
                     reveal=ease(seg(t, 0.15, 1.9)), dim=0.62, lh=52, fs=30)
     if 0.4 < t < 0.56:
         a = int(110 * (1 - (t - 0.4) / 0.16))
-        d = ImageDraw.Draw(img, "RGBA")
-        d.rectangle([0, 0, W, H], fill=(255, 255, 255, a))
+        # img is already RGBA, so drawing into it with an alpha colour writes the pixel instead of
+        # blending it (and convert("RGB") then drops the alpha) — composite a layer to keep it soft.
+        flash = Image.new("RGBA", (W, H), (255, 255, 255, a))
+        img = Image.alpha_composite(img, flash)
     return img
 
 
