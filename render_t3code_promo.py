@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 W, H, FPS, DUR = 1080, 1920, 30, 45.0
 N = int(DUR * FPS)
-OUT = "t3code_promo_45s.mp4"
+OUT = os.environ.get("OUT_NAME") or "t3code_promo_45s.mp4"
 BUILD = "build"
 FONTS = {
     "bold": "C:/Windows/Fonts/tahomabd.ttf",
@@ -24,6 +24,22 @@ FONTS = {
 }
 # FFMPEG_BIN wins everywhere else; keep the bundled Windows build as the default
 FF = os.environ.get("FFMPEG_BIN") or os.path.abspath("tools/_ff/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe")
+# Leelawadee UI ships only with Windows; fall back to the bundled Tahoma elsewhere
+CAP_FONT = os.environ.get("PROMO_CAPTION_FONT") or ("Leelawadee UI" if os.name == "nt" else "Tahoma")
+
+
+def ensure_fontconfig():
+    """libass needs a fontconfig config to see fonts/; Linux hosts here ship without one."""
+    if os.name == "nt" or os.environ.get("FONTCONFIG_FILE") or not os.path.isdir("fonts"):
+        return
+    os.makedirs(BUILD, exist_ok=True)
+    p = os.path.abspath(os.path.join(BUILD, "fonts.conf"))
+    if not os.path.exists(p):
+        with open(p, "w", encoding="utf-8") as f:
+            f.write('<?xml version="1.0"?>\n<!DOCTYPE fontconfig SYSTEM "fonts.dtd">\n'
+                    f"<fontconfig><dir>{os.path.abspath('fonts')}</dir>"
+                    "<cachedir>/tmp/fccache</cachedir></fontconfig>\n")
+    os.environ["FONTCONFIG_FILE"] = p
 
 BG_TOP, BG_BOT = (6, 9, 14), (13, 19, 30)
 PANEL, PANEL2 = (16, 22, 34), (22, 30, 45)
@@ -469,6 +485,11 @@ Style: SubSmall,Leelawadee UI,40,&H00FFFFFF,&H00FFFFFF,&H00000000,&H5A000000,-1,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
+# MarginV 150 keeps the burned subs off the edge of a 16:9-safe player, but TikTok's caption and
+# description overlay owns that strip on a 9:16 frame. scripts/render_tiktok.py raises SUB_MARGIN_V.
+SUB_MV = os.environ.get("SUB_MARGIN_V", "150")
+ASS = ASS.replace(",70,70,150,1", f",70,70,{SUB_MV},1").replace(",60,60,150,1", f",60,60,{SUB_MV},1")
+ASS = ASS.replace("Leelawadee UI", CAP_FONT)
 
 
 def build_ass():
@@ -490,6 +511,7 @@ def build_ass():
 
 # ---------------------------------------------------------------- outputs
 def ffmpeg_cmd(dest):
+    ensure_fontconfig()
     ass = os.path.join(BUILD, "captions.ass").replace("\\", "/")
     return [
         FF, "-y", "-hide_banner", "-loglevel", "error",

@@ -28,6 +28,7 @@ watch them without rendering anything.
 | `render_scrapling_22s.py` | 22 s clip for #4 (Scrapling), imports the shared system above. |
 | `render_hallmark_22s.py` | 22 s clip for #5 (hallmark), imports the shared system above. |
 | `build_audio.py` | Procedural music bed + SFX for every clip, then muxes and loudness-normalises. No samples, no licences to clear. |
+| `scripts/render_tiktok.py` | Platform cut: re-renders all five with the burned captions lifted to `MarginV 260`, clear of TikTok's bottom UI. |
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |
 | `promo_t3code_script.md` | Script for the 45 s flagship clip. |
 | `social_posts_2026-11-06.md` | X / LinkedIn / TikTok post set for the snapshot. |
@@ -62,6 +63,11 @@ python build_audio.py --mux              # score + mux every clip
 ```
 
 Add `--stills 1.0,6.5,12.0` to any renderer to dump PNG frames instead of encoding.
+
+Every renderer honours two env vars on top of `FFMPEG_BIN`: `SUB_MARGIN_V` (bottom margin for the
+burned subtitles, default 150) and `OUT_NAME` (output path). `python scripts/render_tiktok.py` uses
+them to produce `<clip>_tiktok_scored.mp4` at `MarginV 260` — same picture, same score, captions
+lifted clear of TikTok's bottom overlay.
 
 ## Delivery numbers we hold ourselves to
 

@@ -23,7 +23,7 @@ from PIL import Image, ImageDraw
 import render_t3code_promo as base
 
 W, H, FPS, DUR = 1080, 1920, 30, 22.0
-OUT = "hallmark_promo_22s.mp4"
+OUT = os.environ.get("OUT_NAME") or "hallmark_promo_22s.mp4"
 BUILD = "build"
 ASS_NAME = "captions_hall.ass"
 
@@ -320,6 +320,9 @@ Style: SubSmall,Leelawadee UI,40,&H00FFFFFF,&H00FFFFFF,&H00000000,&H5A000000,-1,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
 ASS = ASS.replace("Leelawadee UI", CAP_FONT)
+# MarginV 150 is the 16:9-safe default; TikTok's bottom overlay covers that strip on 9:16.
+SUB_MV = os.environ.get("SUB_MARGIN_V", "150")
+ASS = ASS.replace(",70,70,150,1", f",70,70,{SUB_MV},1").replace(",60,60,150,1", f",60,60,{SUB_MV},1")
 
 
 def build_ass():

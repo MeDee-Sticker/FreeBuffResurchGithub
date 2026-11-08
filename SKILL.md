@@ -59,6 +59,21 @@ never prove caption layout. To inspect captions, extract frames **from the encod
 
 Use PNG. JPEG fails here with `Non full-range YUV is non-standard ... Could not open encoder`.
 
+A platform cut is the same picture with the captions moved, not a second render out of different
+scene code. Every renderer reads `SUB_MARGIN_V` (default 150) for the `Sub`/`SubSmall` bottom margin
+and `OUT_NAME` for the output path. TikTok paints its description and action rail over the bottom
+strip of a 9:16 frame, so its cut sits higher:
+
+```bash
+python scripts/render_tiktok.py            # all five -> <clip>_tiktok_scored.mp4 at MarginV 260
+python scripts/render_tiktok.py cm t3      # named clips only
+SUB_MARGIN_V=300 python scripts/render_tiktok.py t3
+```
+
+The wrapper renders the silent master into `build/` and muxes the existing score, so the TikTok cut
+and the plain cut share one audio master. `scripts/check_clips.py` still verifies the plain
+`<clip>_scored.mp4` set, and the release assets stay on those.
+
 ## 3. Score and mux
 
 ```bash

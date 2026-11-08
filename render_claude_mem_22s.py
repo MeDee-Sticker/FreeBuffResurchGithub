@@ -16,10 +16,26 @@ from PIL import Image, ImageDraw
 import render_t3code_promo as base
 
 W, H, FPS, DUR = 1080, 1920, 30, 22.0
-OUT = "claude_mem_promo_22s.mp4"
+OUT = os.environ.get("OUT_NAME") or "claude_mem_promo_22s.mp4"
 BUILD = "build"
 ASS_NAME = "captions_cm.ass"
 FF = base.FF
+# Leelawadee UI ships only with Windows; fall back to the bundled Tahoma elsewhere
+CAP_FONT = os.environ.get("PROMO_CAPTION_FONT") or ("Leelawadee UI" if os.name == "nt" else "Tahoma")
+
+
+def ensure_fontconfig():
+    """libass needs a fontconfig config to see fonts/; Linux hosts here ship without one."""
+    if os.name == "nt" or os.environ.get("FONTCONFIG_FILE") or not os.path.isdir("fonts"):
+        return
+    os.makedirs(BUILD, exist_ok=True)
+    p = os.path.abspath(os.path.join(BUILD, "fonts.conf"))
+    if not os.path.exists(p):
+        with open(p, "w", encoding="utf-8") as f:
+            f.write('<?xml version="1.0"?>\n<!DOCTYPE fontconfig SYSTEM "fonts.dtd">\n'
+                    f"<fontconfig><dir>{os.path.abspath('fonts')}</dir>"
+                    "<cachedir>/tmp/fccache</cachedir></fontconfig>\n")
+    os.environ["FONTCONFIG_FILE"] = p
 
 F = base.F
 clamp, ease, ease_io, lerp, seg = base.clamp, base.ease, base.ease_io, base.lerp, base.seg
@@ -229,6 +245,10 @@ Style: SubSmall,Leelawadee UI,40,&H00FFFFFF,&H00FFFFFF,&H00000000,&H5A000000,-1,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
+# MarginV 150 is the 16:9-safe default; TikTok's bottom overlay covers that strip on 9:16.
+SUB_MV = os.environ.get("SUB_MARGIN_V", "150")
+ASS = ASS.replace(",70,70,150,1", f",70,70,{SUB_MV},1").replace(",60,60,150,1", f",60,60,{SUB_MV},1")
+ASS = ASS.replace("Leelawadee UI", CAP_FONT)
 
 
 def build_ass():
@@ -250,6 +270,7 @@ def build_ass():
 
 # ---------------------------------------------------------------- outputs
 def ffmpeg_cmd(dest):
+    ensure_fontconfig()
     ass = os.path.join(BUILD, ASS_NAME).replace("\\", "/")
     fontsdir = ":fontsdir=fonts" if os.path.isdir("fonts") else ""
     return [
