@@ -152,7 +152,7 @@ CLIPS = {
             ("ok", "  same rules for people and agents"),
         ],
         "head": [
-            (0.5, 2.9, "ดีไซน์ซิสเต็มสำหรับ agent", 70, 540),
+            (0.5, 2.9, "Design System สำหรับ agent", 70, 540),
             (3.15, 8.9, "ปรับได้ทั้งชุด", 88, 486),
             (9.3, 14.9, "จาก Meta · ตอนนี้ beta", 72, 500),
             (19.4, 21.8, "astryx.atmeta.com", 76, 460),
