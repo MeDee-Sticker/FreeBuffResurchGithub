@@ -31,6 +31,7 @@ watch them without rendering anything.
 | `render_trending_1109.py` | 2026-11-09 series: five 22 s clips for that day's trending top five, one data-driven spec per repo. |
 | `tiktok_drafts_2026-11-09.md` | 2026-11-09 copy paired per clip: TikTok caption, hashtags, pinned comment and the claims each clip may not make. |
 | `reels_captions_2026-11-09.md` | Same five clips for Reels, opened from a different angle, with cover text and first comment. |
+| `captions_clip_library_2026-11-09.md` | Captions for the two library clips outside that series (Freebuff topic-to-clip, E-book), TikTok and Reels. |
 | `build_audio.py` | Procedural music bed + SFX for every clip, then muxes and loudness-normalises. No samples, no licences to clear. |
 | `scripts/render_tiktok.py` | Platform cut: re-renders all five with the burned captions lifted to `MarginV 260`, clear of TikTok's bottom UI. |
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |
