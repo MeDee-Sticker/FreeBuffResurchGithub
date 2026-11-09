@@ -38,6 +38,22 @@ SPEC = {
     "hallmark_promo_22s_scored.mp4": {
         "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
     },
+    # 2026-11-09 series
+    "sherlock_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
+    "openmausbot_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
+    "astryx_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
+    "agent_browser_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
+    "anthropics_skills_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
 }
 
 

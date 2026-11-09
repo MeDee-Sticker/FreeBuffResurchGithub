@@ -28,6 +28,7 @@ watch them without rendering anything.
 | `render_impeccable_22s.py` | 22 s clip for #3 (impeccable), imports the shared system above. |
 | `render_scrapling_22s.py` | 22 s clip for #4 (Scrapling), imports the shared system above. |
 | `render_hallmark_22s.py` | 22 s clip for #5 (hallmark), imports the shared system above. |
+| `render_trending_1109.py` | 2026-11-09 series: five 22 s clips for that day's trending top five, one data-driven spec per repo. |
 | `build_audio.py` | Procedural music bed + SFX for every clip, then muxes and loudness-normalises. No samples, no licences to clear. |
 | `scripts/render_tiktok.py` | Platform cut: re-renders all five with the burned captions lifted to `MarginV 260`, clear of TikTok's bottom UI. |
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |

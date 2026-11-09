@@ -42,6 +42,7 @@ jobs:
           python render_impeccable_22s.py --render
           python render_scrapling_22s.py --render
           python render_hallmark_22s.py --render
+          python render_trending_1109.py --render
 
       - name: Score and mux
         env:

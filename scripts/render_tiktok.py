@@ -19,21 +19,28 @@ os.chdir(ROOT)
 sys.path.insert(0, ROOT)
 
 MARGIN_V = os.environ.get("SUB_MARGIN_V", "260")
+# script, output basename, score, renderer args
 CLIPS = {
-    "cm": ("render_claude_mem_22s.py", "claude_mem_promo_22s", "score_cm.wav"),
-    "imp": ("render_impeccable_22s.py", "impeccable_promo_22s", "score_imp.wav"),
-    "scr": ("render_scrapling_22s.py", "scrapling_promo_22s", "score_scr.wav"),
-    "hall": ("render_hallmark_22s.py", "hallmark_promo_22s", "score_hall.wav"),
-    "t3": ("render_t3code_promo.py", "t3code_promo_45s", "score_t3.wav"),
+    "cm": ("render_claude_mem_22s.py", "claude_mem_promo_22s", "score_cm.wav", ()),
+    "imp": ("render_impeccable_22s.py", "impeccable_promo_22s", "score_imp.wav", ()),
+    "scr": ("render_scrapling_22s.py", "scrapling_promo_22s", "score_scr.wav", ()),
+    "hall": ("render_hallmark_22s.py", "hallmark_promo_22s", "score_hall.wav", ()),
+    "t3": ("render_t3code_promo.py", "t3code_promo_45s", "score_t3.wav", ()),
+    # 2026-11-09 series: one renderer, five specs, so each clip is picked by name
+    "sherlock": ("render_trending_1109.py", "sherlock_promo_22s", "score_sh.wav", ("sherlock",)),
+    "mausbot": ("render_trending_1109.py", "openmausbot_promo_22s", "score_mb.wav", ("mausbot",)),
+    "astryx": ("render_trending_1109.py", "astryx_promo_22s", "score_ax.wav", ("astryx",)),
+    "agentbr": ("render_trending_1109.py", "agent_browser_promo_22s", "score_ab.wav", ("agentbr",)),
+    "skills": ("render_trending_1109.py", "anthropics_skills_promo_22s", "score_sk.wav", ("skills",)),
 }
 
 
 def render(slug):
-    script, base, score = CLIPS[slug]
+    script, base, score, extra = CLIPS[slug]
     silent = os.path.join("build", f"{base}_tiktok.mp4")
     env = dict(os.environ, SUB_MARGIN_V=MARGIN_V, OUT_NAME=silent)
     print(f"[{slug}] render {silent} at MarginV {MARGIN_V}", flush=True)
-    rc = subprocess.run([sys.executable, script, "--render"], env=env).returncode
+    rc = subprocess.run([sys.executable, script, "--render", *extra], env=env).returncode
     if rc != 0:
         return rc
     score = os.path.join("build", score)

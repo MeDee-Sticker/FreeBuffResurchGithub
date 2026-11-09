@@ -253,7 +253,15 @@ SCR_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
 # hallmark (#5)
 HALL_CUTS = [(3.0, "whoosh"), (9.0, "impact"), (13.9, "riser"), (15.0, "impact"),
              (19.0, "whoosh"), (19.5, "typing"), (21.05, "bell")]
-SERIES_22 = ("cm", "imp", "scr", "hall")
+# 2026-11-09 series: five more 22s clips on the same beat sheet, so the cue grid is identical
+D1109 = {
+    "sh": "sherlock_promo_22s",
+    "mb": "openmausbot_promo_22s",
+    "ax": "astryx_promo_22s",
+    "ab": "agent_browser_promo_22s",
+    "sk": "anthropics_skills_promo_22s",
+}
+SERIES_22 = ("cm", "imp", "scr", "hall", *D1109)
 
 
 def build(name, dur, bpm, cuts, kick_beats, hat_div, ticks=None, end_fade=None):
@@ -333,9 +341,14 @@ if __name__ == "__main__":
                 end_fade=(20.9, 22.0))
     hall = build("hall", 22.0, 100, HALL_CUTS, (0, 2), 8, ticks=(15.15, 16.45, 0.08),
                  end_fade=(20.9, 22.0))
+    for slug in D1109:
+        build(slug, 22.0, 100, IMP_CUTS, (0, 2), 8, ticks=(15.15, 16.45, 0.08),
+              end_fade=(20.9, 22.0))
     if "--mux" in args:
         mux("claude_mem_promo_22s.mp4", cm, "claude_mem_promo_22s_scored.mp4")
         mux("t3code_promo_45s.mp4", t3, "t3code_promo_45s_scored.mp4")
         mux("impeccable_promo_22s.mp4", imp, "impeccable_promo_22s_scored.mp4")
         mux("scrapling_promo_22s.mp4", scr, "scrapling_promo_22s_scored.mp4")
         mux("hallmark_promo_22s.mp4", hall, "hallmark_promo_22s_scored.mp4")
+        for slug, base_name in D1109.items():
+            mux(f"{base_name}.mp4", f"build/score_{slug}.wav", f"{base_name}_scored.mp4")
