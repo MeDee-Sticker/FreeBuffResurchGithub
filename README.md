@@ -33,6 +33,7 @@ watch them without rendering anything.
 | `reels_captions_2026-11-09.md` | Same five clips for Reels, opened from a different angle, with cover text and first comment. |
 | `captions_clip_library_2026-11-09.md` | Captions for the two library clips outside that series (Freebuff topic-to-clip, E-book), TikTok and Reels. |
 | `schedule_kopwang_2026-11-09_to_16.md` | Post schedule for page Kopwang, 9–16 Nov 2026: every reel and TikTok draft with its clip, headline, time and status. |
+| `next_batch_2026-11-17_to_21.md` | Next five clips after the queue ends: topic, both platform captions, hashtags, pinned comment and claims to avoid. |
 | `build_audio.py` | Procedural music bed + SFX for every clip, then muxes and loudness-normalises. No samples, no licences to clear. |
 | `scripts/render_tiktok.py` | Platform cut: re-renders all five with the burned captions lifted to `MarginV 260`, clear of TikTok's bottom UI. |
 | `promo_scripts_rank2to5.md` | Shot-by-shot scripts for ranks 2-5, with the facts each clip may and may not claim. |
