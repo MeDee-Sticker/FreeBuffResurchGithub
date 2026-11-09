@@ -3,11 +3,21 @@ import csv
 import html
 import json
 import re
+import sys
 import time
 import urllib.request
 from datetime import datetime, timezone
+from pathlib import Path
 
-RAW = open("trending.html", encoding="utf-8").read()
+PAGE = Path("trending.html")
+if PAGE.exists():
+    RAW = PAGE.read_text(encoding="utf-8")
+else:  # nothing saved: pull the live page instead of asking for a hand download
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "scripts"))
+    from fetch_trending_daily import fetch, url_for
+
+    RAW = fetch(url_for("weekly"))
+
 arts = re.split(r'<article class="Box-row">', RAW)[1:]
 
 rows = []

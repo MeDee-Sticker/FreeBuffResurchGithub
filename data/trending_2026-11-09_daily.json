@@ -1,0 +1,101 @@
+{
+  "schema": "github-trending-snapshot/1",
+  "collected_at": "2026-11-09T01:25:09+00:00",
+  "collected_on": "2026-11-09",
+  "source": "https://github.com/trending",
+  "since": "daily",
+  "period_label": "today",
+  "rows": 9,
+  "repos": [
+    {
+      "repo": "sherlock-project/sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "language": "Python",
+      "stars_gained": 2373,
+      "total_stars": 103616,
+      "forks": 12133,
+      "rank": 1
+    },
+    {
+      "repo": "milind-soni/OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "language": "TypeScript",
+      "stars_gained": 1439,
+      "total_stars": 18290,
+      "forks": 2536,
+      "rank": 2
+    },
+    {
+      "repo": "meta/astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
+      "language": "TypeScript",
+      "stars_gained": 875,
+      "total_stars": 16866,
+      "forks": 1326,
+      "rank": 3
+    },
+    {
+      "repo": "vercel-labs/agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
+      "language": "Rust",
+      "stars_gained": 815,
+      "total_stars": 47626,
+      "forks": 3258,
+      "rank": 4
+    },
+    {
+      "repo": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "language": "Python",
+      "stars_gained": 792,
+      "total_stars": 189673,
+      "forks": 22349,
+      "rank": 5
+    },
+    {
+      "repo": "ranxianglei/billion-context",
+      "url": "https://github.com/ranxianglei/billion-context",
+      "description": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (5x fewer tokens) .上下文压缩插件，月级长会话会话， 兼顾小窗口(100k上下文足矣)省token(省5倍token) . billion-context is all you need",
+      "language": "TypeScript",
+      "stars_gained": 460,
+      "total_stars": 5179,
+      "forks": 406,
+      "rank": 6
+    },
+    {
+      "repo": "dsx-ai-factory/nvke",
+      "url": "https://github.com/dsx-ai-factory/nvke",
+      "description": "NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal.",
+      "language": "Go",
+      "stars_gained": 345,
+      "total_stars": 861,
+      "forks": 111,
+      "rank": 7
+    },
+    {
+      "repo": "google-deepmind/mujoco",
+      "url": "https://github.com/google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "language": "C++",
+      "stars_gained": 41,
+      "total_stars": 16433,
+      "forks": 1953,
+      "rank": 8
+    },
+    {
+      "repo": "anthropics/claude-quickstarts",
+      "url": "https://github.com/anthropics/claude-quickstarts",
+      "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+      "language": "Python",
+      "stars_gained": 32,
+      "total_stars": 19438,
+      "forks": 3280,
+      "rank": 9
+    }
+  ]
+}
