@@ -18,13 +18,17 @@ import os
 import subprocess
 import sys
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 import render_t3code_promo as base
 
 W, H, FPS, DUR = 1080, 1920, 30, 22.0
 BUILD = "build"
 CAP_FONT = os.environ.get("PROMO_CAPTION_FONT") or ("Leelawadee UI" if os.name == "nt" else "Tahoma")
+# Page logo, top-left of every frame. Swap the file or set PAGE_LOGO to use another mark.
+LOGO_PATH = os.environ.get("PAGE_LOGO") or os.path.join("assets", "logo.png")
+LOGO_H = int(os.environ.get("PAGE_LOGO_HEIGHT") or 96)
+LOGO_PAD = int(os.environ.get("PAGE_LOGO_PAD") or 60)
 ensure_fontconfig = base.ensure_fontconfig
 
 F = base.F
@@ -377,12 +381,47 @@ SCENES = [(0.0, scene_hook), (3.0, scene_steps), (9.0, scene_payoff),
           (15.0, scene_numbers), (19.0, scene_cta)]
 
 
+def load_logo():
+    if not os.path.exists(LOGO_PATH):
+        print(f"warning: {LOGO_PATH} not found - rendering without the page logo", flush=True)
+        return None
+    im = Image.open(LOGO_PATH).convert("RGBA")
+    bb = im.getbbox()
+    if bb:  # drop transparent padding so the mark sits on its optical edge
+        im = im.crop(bb)
+    w = max(1, round(im.width * LOGO_H / im.height))
+    im = im.resize((w, LOGO_H), Image.LANCZOS)
+    # soften the square avatar edge so it sits as a mark, not a tile
+    mask = Image.new("L", im.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle(
+        (0, 0, im.width - 1, im.height - 1), radius=max(6, im.width // 5), fill=255)
+    im.putalpha(ImageChops.multiply(im.split()[3], mask))
+    return im
+
+
+LOGO = load_logo()
+LOGO_XY = (LOGO_PAD, LOGO_PAD)
+
+
+def paste_logo(img):
+    """Composite the page mark top-left, with a soft shadow so light marks stay legible."""
+    if LOGO is None:
+        return img
+    x, y = LOGO_XY
+    shadow = Image.new("RGBA", LOGO.size, (0, 0, 0, 0))
+    shadow.putalpha(LOGO.split()[3].filter(ImageFilter.GaussianBlur(9))
+                    .point(lambda v: int(v * 0.6)))
+    img.alpha_composite(shadow, (x + 3, y + 5))
+    img.alpha_composite(LOGO, (x, y))
+    return img
+
+
 def render(t, c):
     fn = SCENES[0][1]
     for start, f in SCENES:
         if t >= start:
             fn = f
-    return fn(t, BG.copy().convert("RGBA"), c).convert("RGB")
+    return paste_logo(fn(t, BG.copy().convert("RGBA"), c)).convert("RGB")
 
 
 # ---------------------------------------------------------------- ASS

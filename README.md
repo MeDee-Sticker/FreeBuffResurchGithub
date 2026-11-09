@@ -68,6 +68,12 @@ python build_audio.py --mux              # score + mux every clip
 
 Add `--stills 1.0,6.5,12.0` to any renderer to dump PNG frames instead of encoding.
 
+Every frame of the 2026-11-09 series carries the page mark in the top-left corner: 96 px tall, 60 px
+in from both edges, with rounded corners and a soft shadow so it reads on the dark grid.
+`render_trending_1109.py` loads it from `assets/logo.png`; set `PAGE_LOGO` to use another file, or
+`PAGE_LOGO_HEIGHT` / `PAGE_LOGO_PAD` to resize and move it. A missing file only warns and renders
+without the mark, so CI stays green if the asset is dropped.
+
 Every renderer honours two env vars on top of `FFMPEG_BIN`: `SUB_MARGIN_V` (bottom margin for the
 burned subtitles, default 150) and `OUT_NAME` (output path). `python scripts/render_tiktok.py` uses
 them to produce `<clip>_tiktok_scored.mp4` at `MarginV 260` — same picture, same score, captions
@@ -87,7 +93,9 @@ lifted clear of TikTok's bottom overlay.
 These are written into the scripts on purpose:
 
 - On-screen numbers are `+N stars this week` and `#position` only. Total-star figures disagree
-  between the trending page and the live API, so totals are not used as claims.
+  between the trending page and the live API, so totals are not used as claims. The 2026-11-09
+  series uses `+N stars today` with the daily rank instead, because two of those repos are missing
+  from that day's weekly list and mixing the two windows would misstate both.
 - No "production-ready" / "stable" claims, and no "free" claims about claude-mem (it has a hosted
   tier and self-hosted key options).
 - impeccable's audit is reported as 62 deterministic rules, not as a WCAG pass guarantee.
