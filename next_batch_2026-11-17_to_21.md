@@ -200,7 +200,7 @@ AI ทำให้งานเสร็จเร็วขึ้น แต่ไ�
 ## 17 พ.ย. TikTok 20:00 — agent-desktop (หัวข้อ 6)
 
 **รีโป:** `vercel-labs/agent-desktop` · Apache-2.0 · ทีม Vercel Labs · CLI + C library (`npm i -g agent-desktop`, `brew install agent-desktop`)
-**มุม:** computer use ไม่จำเป็นต้องถ่ายภาพหน้าจอแล้วเดาพิกเซล — ตัวนี้้อ่าน **accessibility tree** ของแอปแล้วคืนเป็น JSON ที่มี `ref` ให้สั่งได้ตรงตัว
+**มุม:** computer use ไม่จำเป็นต้องถ่ายภาพหน้าจอแล้วเดาพิกเซล — ตัวนี้อ่าน **accessibility tree** ของแอปแล้วคืนเป็น JSON ที่มี `ref` ให้สั่งได้ตรงตัว
 **ตัวเลขที่ใช้ได้ (ดึงใหม่ก่อนโพสต์):** snapshot 10 พ.ย. 2026 = `+12,120 ดาวสัปดาห์นี้ · อันดับ 2 weekly` (`github.com/trending?since=weekly`)
 
 **TikTok:**
