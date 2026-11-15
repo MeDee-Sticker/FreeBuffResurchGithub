@@ -202,6 +202,7 @@ AI ทำให้งานเสร็จเร็วขึ้น แต่ไ�
 **รีโป:** `vercel-labs/agent-desktop` · Apache-2.0 · ทีม Vercel Labs · CLI + C library (`npm i -g agent-desktop`, `brew install agent-desktop`)
 **มุม:** computer use ไม่จำเป็นต้องถ่ายภาพหน้าจอแล้วเดาพิกเซล — ตัวนี้อ่าน **accessibility tree** ของแอปแล้วคืนเป็น JSON ที่มี `ref` ให้สั่งได้ตรงตัว
 **ตัวเลขที่ใช้ได้ (ดึงใหม่ก่อนโพสต์):** snapshot 10 พ.ย. 2026 = `+12,120 ดาวสัปดาห์นี้ · อันดับ 2 weekly` (`github.com/trending?since=weekly`)
+**ไฟล์:** `agent_desktop_promo_22s_tiktok_scored.mp4` (959,927 B · clip id 53) · **ร่าง TikTok id 15** · 17 พ.ย. 20:00
 
 **TikTok:**
 ```
@@ -226,6 +227,7 @@ agent-desktop อ่านต้นไม้ accessibility ของแอป �
 **รีโป:** `cloudflare/security-audit-skill` · MIT · สกิลสำหรับ coding agent (ติดตั้งผ่าน `npx skills add ... --skill security-audit`)
 **มุม:** จุดต่างไม่ใช่ "ให้ AI หาช่องโหว่" แต่คือ **มีคนค้าน** — ทุกข้อสงสัยต้องผ่านผู้ตรวจใหม่ที่พยายามหักล้างมันก่อนจะถูกนับ
 **ตัวเลขที่ใช้ได้ (ดึงใหม่ก่อนโพสต์):** snapshot 10 พ.ย. 2026 = `+10,695 ดาวสัปดาห์นี้ · อันดับ 12 weekly`
+**ไฟล์:** `security_audit_promo_22s_tiktok_scored.mp4` (940,379 B · clip id 54) · **ร่าง TikTok id 16** · 18 พ.ย. 20:00
 
 **TikTok:**
 ```
@@ -253,6 +255,14 @@ security-audit-skill สั่งให้ coding agent ตรวจเป็น
 - คำบรรยายไหม้ (burn-in) ใช้ฟอนต์เดียวกับซีรีส์ 9 พ.ย. · รีล `MarginV 150` · TikTok `MarginV 260`
 - โลโก้ Kopwang มุมซ้ายบนทุกคลิป
 - ไม่มีเสียงบรรยาย (VO) — ใช้เพลงจาก `build_audio.py` เหมือนเดิม
+
+## สถานะ ณ 15 พ.ย. 2026
+
+- หัวข้อ 6–7 เรนเดอร์แล้วและผ่าน `scripts/check_clips.py` (660 เฟรม · 22.00 วิ · -17.3 LUFS · sync 25/40 ms)
+- ขึ้นคลัง Page Auto แล้ว: clip id 53 และ 54 · สร้างร่าง TikTok id 15 (17 พ.ย. 20:00) และ id 16 (18 พ.ย. 20:00) สถานะ `scheduled`
+- คลิปชุดนี้เบิร์นตัวเลขจาก snapshot 10 พ.ย. ไว้ในภาพ — ถ้าโพสต์หลัง 13 พ.ย. ตัวเลขจะเริ่มเก่า
+  ให้แก้ `gained`/`rank` ใน `render_aiagents_1117.py` แล้วรัน `SUB_MARGIN_V=260 python render_aiagents_1117.py --tiktok` ใหม่
+  หรือถ้าไม่มีตัวเลขใหม่ที่ยืนยันได้ ให้ตัดฉากตัวเลขออกแล้วลงเป็นคลิป evergreen ตามกติกากลาง
 
 ## เช็กลิสต์ก่อนผลิต
 
