@@ -306,6 +306,26 @@ def main(argv):
                                   ticks=(15.15, 16.45, 0.08), end_fade=(20.9, 22.0))
             bad |= build_audio.mux(master, path, f"{c['out']}_scored.mp4") != 0
         return 1 if bad else 0
+    if "--tiktok" in argv:
+        import subprocess
+        import build_audio
+        bad = 0
+        wanted = [a for a in argv[argv.index("--tiktok") + 1:] if not a.startswith("-")] or list(CLIPS)
+        for slug in wanted:
+            c = CLIPS[slug]
+            silent = os.path.join("build", f"{c['out']}_tiktok.mp4")
+            env = dict(os.environ, OUT_NAME=silent, SUB_MARGIN_V=os.environ.get("SUB_MARGIN_V", "260"))
+            rc = subprocess.run([sys.executable, "render_evergreen_1117.py", "--render", slug], env=env).returncode
+            print(f"[{slug}] tiktok render exit {rc} at MarginV {env['SUB_MARGIN_V']}", flush=True)
+            bad |= rc
+            if rc == 0:
+                score = os.path.join("build", f"score_{slug}.wav")
+                if not os.path.exists(score):
+                    build_audio.build(slug, 22.0, 100, build_audio.IMP_CUTS, (0, 2), 8,
+                                      ticks=(15.15, 16.45, 0.08), end_fade=(20.9, 22.0))
+                bad |= build_audio.mux(silent, score, f"{c['out']}_tiktok_scored.mp4") != 0
+        return 1 if bad else 0
+
     print(__doc__)
     return 0
 
