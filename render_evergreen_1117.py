@@ -114,6 +114,152 @@ CLIPS = {
     },
 }
 
+EXTRA = {
+    "three": {
+        "out": "one_clip_three_assets_promo_22s",
+        "monogram": "3X",
+        "accent": S.CYAN,
+        "glow": base.GLOW_CYAN,
+        "chips": ["REPURPOSE", "15 MIN", "NO RESHOOT"],
+        "term_title": "~/clip  exports",
+        "term": [
+            ("cmd", "> clip.mov  →  3 assets"),
+            ("ok", "  hook.mp4    15s"),
+            ("ok", "  post.md     transcript"),
+            ("dim", "  frames/3    carousel"),
+        ],
+        "steps": [
+            ("hook", "the 15 s people actually finish", S.CYAN),
+            ("text", "transcript becomes the long post", S.VIOLET),
+            ("frames", "three stills make a how-to carousel", S.GREEN),
+        ],
+        "payoff_title": "~/clip  rules",
+        "payoff": [
+            ("ok", "  pick only what needs no reshoot"),
+            ("dim", "  one idea, three doors in"),
+            ("ok", "  fifteen minutes, not three shoots"),
+        ],
+        "recap_title": "~/notes  repurpose",
+        "recap": [
+            ("ok", "  hook  ·  transcript  ·  stills"),
+            ("dim", "  same clip, three entry points"),
+            ("ok", "  stop paying for the same idea twice"),
+        ],
+        "head": [
+            (0.5, 2.9, "คลิปเดียว จบ?", 80, 540),
+            (3.15, 8.9, "จ่ายไอเดีย 3 รอบ", 78, 486),
+            (9.3, 14.9, "สินค้า 3 ชิ้น", 88, 500),
+            (19.4, 21.8, "15 นาทีก็พอ", 76, 460),
+        ],
+        "subs": [
+            (0.6, 2.9, "ถ่ายคลิปเดียวแล้วจบ = จ่ายค่าไอเดียแพงกว่าคนอื่น"),
+            (3.4, 6.1, "คลิปที่ดีไม่ควรจบที่ปุ่มโพสต์"),
+            (6.1, 8.9, "ตัด 15 วิที่คนดูจบมากสุด เป็น hook คลิปหน้า"),
+            (9.4, 12.6, "ถอดเสียงเป็นข้อความ ได้โพสต์ยาวทั้งอัน"),
+            (12.6, 14.9, "จับภาพนิ่ง 3 เฟรม ได้ carousel สอนทีละขั้น"),
+            (15.4, 18.9, "เกณฑ์เดียว: ทำได้โดยไม่ต้องถ่ายใหม่"),
+            (19.5, 21.8, "หนึ่งไอเดีย สามทางเข้า"),
+        ],
+        "cmd": "ffmpeg -ss 0 -t 15 -i clip.mov hook.mp4",
+    },
+    "price": {
+        "out": "digital_pricing_promo_22s",
+        "monogram": "฿",
+        "accent": S.AMBER,
+        "glow": base.GLOW_VIOLET,
+        "chips": ["OUTCOME", "TIME SAVED", "3 TIERS"],
+        "term_title": "~/pricing  sheet",
+        "term": [
+            ("cmd", "> price --by outcome"),
+            ("ok", "  saves 5 h  →  their hourly rate"),
+            ("dim", "  low price, low expectation"),
+            ("ok", "  start  ·  full  ·  ongoing"),
+        ],
+        "steps": [
+            ("outcome", "price what they get back", S.CYAN),
+            ("time", "price the hours you remove", S.VIOLET),
+            ("tiers", "let people choose their depth", S.GREEN),
+        ],
+        "payoff_title": "~/pricing  check",
+        "payoff": [
+            ("ok", "  99 x 100  vs  990 x 10"),
+            ("dim", "  cheap buys more work, not less"),
+            ("ok", "  refunds rise when the price whispers"),
+        ],
+        "recap_title": "~/notes  pricing",
+        "recap": [
+            ("ok", "  outcome  ·  hours  ·  tiers"),
+            ("dim", "  fear is not a pricing method"),
+            ("ok", "  raise it before chasing more buyers"),
+        ],
+        "head": [
+            (0.5, 2.9, "ตั้ง 99 บาท", 86, 540),
+            (3.15, 8.9, "ต้องขาย 100 คน", 72, 486),
+            (9.3, 14.9, "ราคาไม่ใช่ความกลัว", 62, 500),
+            (19.4, 21.8, "คิดจากผลลัพธ์", 76, 460),
+        ],
+        "subs": [
+            (0.6, 2.9, "ตั้งราคาถูกไม่ได้ทำให้ขายง่ายขึ้น"),
+            (3.4, 6.1, "แค่ทำให้คุณต้องขายให้มากขึ้น"),
+            (6.1, 8.9, "คิดจากผลลัพธ์ที่ลูกค้าได้กลับไป"),
+            (9.4, 12.6, "คิดจากชั่วโมงที่คุณประหยัดให้เขา"),
+            (12.6, 14.9, "แบ่ง 3 ชั้น ให้เลือกตามกำลัง"),
+            (15.4, 18.9, "ราคาต่ำ = คาดหวังน้อย แต่ขอคืนเงินง่าย"),
+            (19.5, 21.8, "ถ้าต้องขายเยอะ นั่นคือซื้อความเหนื่อย"),
+        ],
+        "cmd": "cat pricing.md",
+    },
+    "audit": {
+        "out": "ai_review_3min_promo_22s",
+        "monogram": "QA",
+        "accent": S.RED,
+        "glow": base.GLOW_VIOLET,
+        "chips": ["NUMBERS", "LINKS", "VOICE"],
+        "term_title": "~/deliver  checklist",
+        "term": [
+            ("cmd", "> review --3min"),
+            ("ok", "  numbers  ·  names  ·  dates"),
+            ("ok", "  links clicked, images zoomed"),
+            ("dim", "  read it aloud, last"),
+        ],
+        "steps": [
+            ("facts", "numbers, names and dates first", S.CYAN),
+            ("links", "open every one, not just the look", S.VIOLET),
+            ("voice", "read it aloud — is it still you", S.GREEN),
+        ],
+        "payoff_title": "~/deliver  before send",
+        "payoff": [
+            ("ok", "  cut the line the model invented"),
+            ("dim", "  fix the hands, the logo, the type"),
+            ("ok", "  three minutes, one page, every job"),
+        ],
+        "recap_title": "~/notes  review",
+        "recap": [
+            ("ok", "  facts  ·  links  ·  images  ·  tone"),
+            ("dim", "  fast is not the same as correct"),
+            ("ok", "  the checklist is the product"),
+        ],
+        "head": [
+            (0.5, 2.9, "ลูกค้าไม่ได้เลิก", 70, 540),
+            (3.15, 8.9, "เพราะคุณทำช้า", 76, 486),
+            (9.3, 14.9, "เพราะไม่ได้ตรวจ", 76, 500),
+            (19.4, 21.8, "3 นาทีก่อนกดส่ง", 72, 460),
+        ],
+        "subs": [
+            (0.6, 2.9, "ลูกค้าไม่ได้เลิกจ้างเพราะคุณทำช้า"),
+            (3.4, 6.1, "เขาเลิกเพราะคุณส่งงานที่ยังไม่ได้ตรวจ"),
+            (6.1, 8.9, "AI ทำให้เร็วขึ้น ไม่ได้ทำให้ถูกขึ้น"),
+            (9.4, 12.6, "เช็กตัวเลข วันที่ ชื่อเฉพาะ และกดลิงก์จริง"),
+            (12.6, 14.9, "ดูภาพที่มือเพี้ยน ตัดประโยคที่โมเดลเติม"),
+            (15.4, 18.9, "อ่านออกเสียง — ถ้าฟังไม่เหมือนคุณ ให้แก้"),
+            (19.5, 21.8, "เช็กลิสต์ 1 หน้า ใช้ซ้ำได้ทุกงาน"),
+        ],
+        "cmd": "cat review-checklist.md",
+    },
+}
+
+CLIPS.update(EXTRA)
+
 S.CLIPS.update(CLIPS)
 
 
@@ -148,7 +294,9 @@ def main(argv):
     if "--scored" in argv:
         import build_audio
         bad = 0
-        for slug, c in CLIPS.items():
+        wanted = [a for a in argv[argv.index("--scored") + 1:] if not a.startswith("-")] or list(CLIPS)
+        for slug in wanted:
+            c = CLIPS[slug]
             master = f"{c['out']}.mp4"
             if not os.path.exists(master):
                 sys.exit(f"{master} missing — run --render first")
