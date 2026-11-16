@@ -23,6 +23,13 @@ PEAK_CEILING = -1.5            # dBFS true peak; see SKILL.md on loudnorm oversh
 SYNC_TOLERANCE_MS = 120
 
 SPEC = {
+    # 2026-11-17 batch (evergreen reels, recap instead of numbers)
+    "mcp_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
+    "prompt_is_data_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
     # 2026-11-17 batch (weekly numbers)
     "agent_desktop_promo_22s_scored.mp4": {
         "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
