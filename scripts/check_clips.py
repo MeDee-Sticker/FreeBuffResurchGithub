@@ -77,6 +77,10 @@ SPEC = {
     "anthropics_skills_promo_22s_scored.mp4": {
         "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
     },
+    # 2026-11-18 batch (weekly numbers)
+    "claude_bughunter_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
 }
 
 

@@ -35,7 +35,7 @@
    "rank": 2
   },
   {
-   "repo": "elementalsouls",
+   "repo": "elementalsouls/Claude-BugHunter",
    "url": null,
    "desc": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
    "lang": "Python",
@@ -147,7 +147,7 @@
    "rank": 10
   },
   {
-   "repo": "ZhuLinsen",
+   "repo": "ZhuLinsen/daily_stock_analysis",
    "url": null,
    "desc": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
    "lang": "Python",
@@ -234,7 +234,7 @@
  "daily": [
   {
    "rank": 1,
-   "repo": "elementalsouls",
+   "repo": "elementalsouls/Claude-BugHunter",
    "stars_gained_today": 2322,
    "language": "Python",
    "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
@@ -304,7 +304,7 @@
   },
   {
    "rank": 11,
-   "repo": "sveltejs",
+   "repo": "sveltejs/svelte",
    "stars_gained_today": 694,
    "language": "JavaScript",
    "description": "web development for the rest of us"
@@ -332,14 +332,14 @@
   },
   {
    "rank": 15,
-   "repo": "obra",
+   "repo": "obra/superpowers",
    "stars_gained_today": 823,
    "language": "Shell",
    "description": "An agentic skills framework & software development methodology that works."
   },
   {
    "rank": 16,
-   "repo": "affaan-m",
+   "repo": "affaan-m/ECC",
    "stars_gained_today": 1109,
    "language": "JavaScript",
    "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
