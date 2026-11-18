@@ -25,7 +25,7 @@
 | 15 | `openai/codex-security` | +2,531 | TypeScript | เข้าใหม่ | OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. n |
 | 16 | `dream-num/univer` | +5,845 | TypeScript | เข้าใหม่ | Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processin |
 
-## ที่ควรทำคลิปต่อ (ียงตามความคุ้ม)
+## ที่ควรทำคลิปต่อ (เรียงตามความคุ้ม)
 
 1. **`GoogleChrome/modern-web-guidance-src`** (+7,015 · อันดับ 1) — ชุดความรู้ web best practices ที่ agent อ่านแล้วทำตาม; มุม: "ทำไมหน้าเว็บที่ agent สร้างยังช้า" ต่อเนื่องจาก astryx ได้พอดี
 2. **`elementalsouls`** (+2,508 สัปดาห์นี้ · **+2,322 วันนี้ = อันดับ 1 daily**) — skill bundle สาย bug hunting / red team; มุม: "ให้ agent ล่าบั๊กแบบมีระเบียบ" ต่อจาก security-audit-skill แต่คนละขั้น (จับบั๊ก ≠ ตรวจช่องโหว่)
