@@ -1,0 +1,17 @@
+rank,repo,stars_gained_7d,total_stars,age_days,license,language,status,description
+1,GoogleChrome/modern-web-guidance-src,7015,,,,TypeScript,เข้าใหม่,Keep your coding agent up to date with the latest web best practices
+2,backnotprop/plannotator,2926,,,,TypeScript,เข้าใหม่,"The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click."
+3,elementalsouls,2508,,,,Python,เข้าใหม่,"A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
+4,meta/astryx,8700,,,,TypeScript,ทำคลิปแล้ว,An open source design system that's fully customizable and agent ready
+5,we-promise/sure,4786,,,,Ruby,เข้าใหม่,The personal finance app for everyone (by everyone)
+6,alibaba/open-code-review,3675,,,,Go,เข้าใหม่,"Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
+7,google-labs-code/stitch-skills,1197,,,,TypeScript,เข้าใหม่,"A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
+8,tradermonty/claude-trading-skills,2985,,,,Python,เข้าใหม่,"Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development."
+9,ChromeDevTools/chrome-devtools-mcp,2948,,,,TypeScript,เข้าใหม่,Chrome DevTools for coding agents
+10,anthropics/skills,4847,,,,Python,ทำคลิปแล้ว,Public repository for Agent Skills
+11,ZhuLinsen,3653,,,,Python,เข้าใหม่,"LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
+12,mvanhorn/last30days-skill,1548,,,,Python,เข้าใหม่,"AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
+13,ag-ui-protocol/ag-ui,2773,,,,TypeScript,เข้าใหม่,AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.
+14,vercel-labs/agent-browser,3429,,,,Rust,ทำคลิปแล้ว,Browser automation CLI for AI agents
+15,openai/codex-security,2531,,,,TypeScript,เข้าใหม่,"OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security"
+16,dream-num/univer,5845,,,,TypeScript,เข้าใหม่,"Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core."
