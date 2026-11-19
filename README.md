@@ -23,6 +23,9 @@ watch them without rendering anything.
 | `fetch_trending.py` | Builds the weekly workbook rows, downloading the trending page when `trending.html` is absent. |
 | `scripts/fetch_trending_daily.py` | Fetches the live trending page and writes a dated snapshot to `data/` (`trending_<date>_<window>.json` plus a CSV twin) with its metadata. No hand-downloaded HTML needed. |
 | `ai_content_radar.py` | Scores/ranks the snapshot (growth, age, language mix). |
+| `runbook_daily_clips.md` | The daily production loop end to end: fetch, pick, render, check, upload, schedule, record. Ops instructions live here. |
+| `scripts/daily_plan.py` | Picks today's repo from the freshest weekly snapshot, refuses a board older than 3 days, verifies a renderer's on-screen numbers against the board, and records finished clips in `data/clip_registry.json`. |
+| `.github/workflows/daily-trending.yml` | Runs at 08:00 Bangkok every day: fetches the weekly board, writes that day's plan, commits the snapshot. |
 | `render_t3code_promo.py` | Shared visual system: dark grid background, mono type, terminal cards, glow, ASS captions, ffmpeg command. Also renders the 45 s T3 Code clip. |
 | `render_claude_mem_22s.py` | 22 s clip for #2 (claude-mem), imports the shared system above. |
 | `render_impeccable_22s.py` | 22 s clip for #3 (impeccable), imports the shared system above. |

@@ -1,0 +1,160 @@
+{
+  "schema": "clip-registry/1",
+  "updated_on": "2026-11-19",
+  "clips": [
+    {
+      "repo": "GoogleChrome/modern-web-guidance-src",
+      "out": "modern_web_guidance_promo_22s",
+      "made_on": "2026-11-18",
+      "renderer": "render_modernweb_1118.py",
+      "clip_ids": [82, 83],
+      "reel_post": 190,
+      "tiktok_post": 23,
+      "scheduled": ["2026-11-22T19:00", "2026-11-22T20:00"],
+      "note": "+7,015 weekly #1 — numbers valid until 21 Nov, slot is 22 Nov"
+    },
+    {
+      "repo": "elementalsouls/Claude-BugHunter",
+      "out": "claude_bughunter_promo_22s",
+      "made_on": "2026-11-18",
+      "renderer": "render_bughunter_1118.py",
+      "clip_ids": [80, 81],
+      "reel_post": 189,
+      "tiktok_post": 21,
+      "scheduled": ["2026-11-18T21:00", "2026-11-18T21:30"],
+      "note": "+2,508 weekly #3 · +2,322 daily #1"
+    },
+    {
+      "repo": "meta/astryx",
+      "out": "astryx_promo_22s",
+      "made_on": "2026-11-09",
+      "renderer": "render_trending_1109.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "9 Nov series"
+    },
+    {
+      "repo": "anthropics/skills",
+      "out": "anthropics_skills_promo_22s",
+      "made_on": "2026-11-09",
+      "renderer": "render_trending_1109.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "9 Nov series"
+    },
+    {
+      "repo": "vercel-labs/agent-browser",
+      "out": "agent_browser_promo_22s",
+      "made_on": "2026-11-09",
+      "renderer": "render_trending_1109.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "9 Nov series"
+    },
+    {
+      "repo": "vercel-labs/agent-desktop",
+      "out": "agent_desktop_promo_22s",
+      "made_on": "2026-11-17",
+      "renderer": "render_aiagents_1117.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "weekly #2 on 17 Nov"
+    },
+    {
+      "repo": "cloudflare/security-audit-skill",
+      "out": "security_audit_promo_22s",
+      "made_on": "2026-11-17",
+      "renderer": "render_aiagents_1117.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "17 Nov batch"
+    },
+    {
+      "repo": "sherlock-project/sherlock",
+      "out": "sherlock_promo_22s",
+      "made_on": "2026-11-10",
+      "renderer": "render_trending_1109.py",
+      "clip_ids": [],
+      "reel_post": 157,
+      "tiktok_post": 6,
+      "scheduled": ["2026-11-10T19:00", "2026-11-10T20:00"],
+      "note": "daily #1 on 9 Nov"
+    },
+    {
+      "repo": "pingdotgg/t3code",
+      "out": "t3code_promo_45s",
+      "made_on": "2026-11-06",
+      "renderer": "render_t3code_promo.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "flagship 45 s, weekly #1 on 6 Nov"
+    },
+    {
+      "repo": "thedotmack/claude-mem",
+      "out": "claude_mem_promo_22s",
+      "made_on": "2026-11-06",
+      "renderer": "render_claude_mem_22s.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "weekly #2 on 6 Nov"
+    },
+    {
+      "repo": "pbakaus/impeccable",
+      "out": "impeccable_promo_22s",
+      "made_on": "2026-11-06",
+      "renderer": "render_impeccable_22s.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "weekly #3 on 6 Nov"
+    },
+    {
+      "repo": "D4Vinci/Scrapling",
+      "out": "scrapling_promo_22s",
+      "made_on": "2026-11-06",
+      "renderer": "render_scrapling_22s.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "weekly #4 on 6 Nov"
+    },
+    {
+      "repo": "Nutlope/hallmark",
+      "out": "hallmark_promo_22s",
+      "made_on": "2026-11-06",
+      "renderer": "render_hallmark_22s.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "weekly #5 on 6 Nov"
+    },
+    {
+      "repo": "milind-soni/OpenMausBot",
+      "out": "openmausbot_promo_22s",
+      "made_on": "2026-11-09",
+      "renderer": "render_trending_1109.py",
+      "clip_ids": [],
+      "reel_post": null,
+      "tiktok_post": null,
+      "scheduled": [],
+      "note": "9 Nov series"
+    }
+  ]
+}

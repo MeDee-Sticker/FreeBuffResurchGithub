@@ -1,0 +1,55 @@
+name: daily-trending
+
+# The unattended half of the daily loop in runbook_daily_clips.md: fetch the weekly board every
+# morning (08:00 Asia/Bangkok), write that day's plan, and keep the snapshot so a renderer can be
+# verified against the board it claims to quote. Rendering and posting stay manual — they need copy
+# written per repo and the owner's Page Auto session.
+
+on:
+  schedule:
+    - cron: "0 1 * * *"   # 01:00 UTC = 08:00 Asia/Bangkok
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot-and-plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the weekly board
+        run: python scripts/fetch_trending_daily.py --since weekly
+
+      - name: Plan today's clip
+        run: |
+          python scripts/daily_plan.py --top 8 --markdown --write-plan data/daily_plan.md \
+            || echo "board is stale or empty — see the plan above" >> "$GITHUB_STEP_SUMMARY"
+          cat data/daily_plan.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the plan for 30 days
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-plan
+          path: data/daily_plan.md
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Commit the snapshot
+        run: |
+          git config user.name "trending-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/trending_*
+          if git diff --cached --quiet; then
+            echo "no new snapshot"
+          else
+            git commit -m "Snapshot the weekly trending board [skip ci]"
+            git push
+          fi
