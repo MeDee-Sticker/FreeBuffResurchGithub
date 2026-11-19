@@ -81,6 +81,9 @@ SPEC = {
     "claude_bughunter_promo_22s_scored.mp4": {
         "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
     },
+    "modern_web_guidance_promo_22s_scored.mp4": {
+        "frames": 660, "duration": 22.0, "cues": [3.0, 9.0, 15.0, 19.0],
+    },
 }
 
 
