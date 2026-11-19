@@ -36,6 +36,17 @@
 
 ## คลิปที่ทำจากบอร์ดนี้แล้ว
 
+**`GoogleChrome/modern-web-guidance-src`** — เรนเดอร์ 18 พ.ย. 2026 (ข้อมูลบอร์ดวันเดียวกัน)
+- รีล: `modern_web_guidance_promo_22s_scored.mp4` (937,604 B · 22.00 วิ) · TikTok: `modern_web_guidance_promo_22s_tiktok_scored.mp4` (932,401 B · MarginV 260)
+- สคริปต์เรนเดอร์: `render_modernweb_1118.py` · ผ่าน `scripts/check_clips.py` (660 เฟรม · 22.00 วิ · -17.3 LUFS · -3.6 dBFS · sync 25 ms)
+- ตัวเลขบนจอ: +7,015 สัปดาห์นี้ อันดับ 1 weekly (ไม่มีตัวเลข daily เพราะวันนั้นไม่อยู่ใน 20 อันดับ daily) → **ใช้ได้ถึง 21 พ.ย.**
+- ข้อเท็จจริงที่ใช้: 262 ฟีเจอร์ / 204 คู่มือ · CLI ค้นหาในเครื่อง (BM25 + embedding, ไม่ต่อเน็ต ไม่ใช้คีย์) · eval 8 พ.ย. guided 94% vs unguided 58% · Apache-2.0 · ใช้ได้กับ 9 harness (Claude Code, Codex, Copilot CLI, Antigravity, Grok, Kimi, Pi, Vercel skills, GitHub CLI) · Chrome/Edge/Firefox/MDN ดูแลร่วม
+- ห้ามพูดในแคปชัน: ยอดดาวรวม · "ทำให้เว็บเร็วขึ้น N เท่า" · "ใช้ได้กับทุกเบราว์เซอร์แน่นอน" (คู่มือบางตัวเป็น origin trial/volatile และถูก gate ไว้)
+- คลังคลิป: id 82 (รีล `d15a7436…` · 937,604 B) · id 83 (TikTok `c62692d4…` · 932,401 B) — ตรวจ Range แล้วได้ 206 และขนาดตรงกับไฟล์ในเครื่อง
+- **โพสต์รีล id 190** · 22 พ.ย. 19:00 · **ร่าง TikTok id 23** · 22 พ.ย. 20:00 (ช่องว่างถัดไปหลัง 21 พ.ย. — 19–21 พ.ย. เต็มทั้งสองช่อง)
+- ตรวจบอร์ดซ้ำก่อนตั้งคิว 18 พ.ย.: ยังเป็น +7,015 · อันดับ 1 weekly เท่าเดิม จึงเรนเดอร์ซ้ำไม่จำเป็น
+- ⚠️ ความสดของตัวเลข: ดึง 18 พ.ย. = ใช้ได้ถึง 21 พ.ย. แต่โพสต์จริง 22 พ.ย. จึงเกินกรอบ 3 วันไป 1 วัน — ถ้าอยากอยู่ในกรอบ ให้เลื่อนรีลไป 21 พ.ย. 21:00 และ TikTok 21:30 (ว่างทั้งคู่) หรือดึงบอร์ดใหม่ + เรนเดอร์ซ้ำก่อนถึงวันโพสต์
+
 **`elementalsouls/Claude-BugHunter`** — เรนเดอร์ 18 พ.ย. 2026 (ข้อมูลบอร์ดวันเดียวกัน)
 - รีล: `claude_bughunter_promo_22s_scored.mp4` (907,211 B · 22.00 วิ) · **โพสต์รีล id 189** · 18 พ.ย. 21:00
 - TikTok: `claude_bughunter_promo_22s_tiktok_scored.mp4` (907,670 B · MarginV 260) · **ร่าง id 21** · clip id 81 · 18 พ.ย. 21:30
@@ -46,7 +57,7 @@
 - ห้ามพูดในแคปชัน: "ใช้แล้วเจอช่องโหว่แน่นอน" · "ยิงเป้าใครก็ได้" · รับประกันรายได้จาก bug bounty
 
 ## ทำคลิปไปแล้ว / อย่าซ้ำ
-- `meta/astryx` (+8,700) · `anthropics/skills` (+4,847) · `vercel-labs/agent-browser` (+3,429)
+- `GoogleChrome/modern-web-guidance-src` (+7,015) · `elementalsouls/Claude-BugHunter` (+2,508) · `meta/astryx` (+8,700) · `anthropics/skills` (+4,847) · `vercel-labs/agent-browser` (+3,429)
 
 ## ของใหม่บน daily ที่น่าจับตา
 - `elementalsouls/Claude-BugHunter` +2,322 (อันดับ 1) · `google-research/paper-orchestra` +1,529 (multi-agent เขียนงานวิจัย) · `NVIDIA/SkillEvaluator` +869 (ประเมิน skill ของ agent) · `mvanhorn/last30days-skill` +1,062 (สกิลค้นข้าม Reddit/X/YouTube/HN)
